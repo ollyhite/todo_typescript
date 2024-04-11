@@ -2,7 +2,12 @@ import { Avatar, Box, Typography } from "@mui/material";
 import React, { FC, ReactElement } from "react";
 import PropTypes from "prop-types";
 
-export const Profile: FC = (props: any): ReactElement => {
+// interface or PropTypes both can work
+interface IProfile {
+  name?: string;
+}
+
+export const Profile: FC<IProfile> = (props): ReactElement => {
   const { name = "Olly" } = props;
   return (
     <Box
@@ -33,6 +38,7 @@ export const Profile: FC = (props: any): ReactElement => {
   );
 };
 
+// will show on error on your web app
 Profile.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
