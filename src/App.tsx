@@ -1,12 +1,13 @@
 import React, { FC, ReactElement } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { customTheme } from "./theme/customTheme";
+import { Dashboard } from "./pages/dashboard/dashboard";
 
 const App: FC = (): ReactElement => {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-      <main>This app is using the dark mode</main>
+      <Dashboard />
     </ThemeProvider>
   );
 };
