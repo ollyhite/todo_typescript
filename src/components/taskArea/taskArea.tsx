@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Alert, LinearProgress } from "@mui/material";
 import React, { FC, ReactElement } from "react";
 import { format } from "date-fns";
 import { TaskCounter } from "../taskCounter/taskCounter";
@@ -18,7 +18,7 @@ export const TaskArea: FC = (): ReactElement => {
     },
   });
 
-//   console.log("data", data);
+  //   console.log("data", data);
 
   return (
     <Grid item md={8} px={4}>
@@ -41,9 +41,38 @@ export const TaskArea: FC = (): ReactElement => {
           <TaskCounter />
         </Grid>
         <Grid item display="flex" flexDirection="column" xs={10} md={8}>
-          <Task />
-          <Task />
-          <Task />
+          <>
+            {error && (
+              <Alert severity="error">
+                There was an error fetching your tasks
+              </Alert>
+            )}
+
+            {!error && data && data.length === 0 && (
+              <Alert severity="warning">
+                You don't have any tasks created yet. Start by creating some
+                tasks
+              </Alert>
+            )}
+
+            {isLoading ? (
+              <LinearProgress />
+            ) : (
+              Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((task) => (
+                <Task
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  date={new Date(task.date)}
+                  priority={task.priority}
+                  status={task.status}
+                />
+              ))
+            )}
+          </>
         </Grid>
       </Grid>
     </Grid>
