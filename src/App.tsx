@@ -24,7 +24,7 @@ const App: FC = (): ReactElement => {
   );
   //create a client
   // const queryClient = new QueryClient();
-  const [showDevtools, setShowDevtools] = useState(false);
+  const [showDevtools, setShowDevtools] = useState(true);
 
   useEffect(() => {
     // @ts-ignore
