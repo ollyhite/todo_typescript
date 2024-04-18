@@ -24,17 +24,16 @@ export const TaskArea: FC = (): ReactElement => {
   });
 
   //update task useMutation
-  // const updateTaskMutation = useMutation(
-  //   (data: IUpdateTask): Promise<unknown> =>
-  //     sendApiRequest("http://localhost:3200/tasks", "PUT", data)
-  // );
+  const updateTaskMutation = useMutation((data: IUpdateTask) =>
+    sendApiRequest("http://localhost:3200/tasks", "PUT", data)
+  );
 
-  const updateTaskMutation = useMutation({
-    mutationKey: ["updateTask"],
-    mutationFn: (data: IUpdateTask) => {
-      return sendApiRequest("http://localhost:3200/tasks", "PUT", data);
-    },
-  });
+  // const updateTaskMutation = useMutation({
+  //   mutationKey: ["updateTask"],
+  //   mutationFn: (data: IUpdateTask) => {
+  //     return sendApiRequest("http://localhost:3200/tasks", "PUT", data);
+  //   },
+  // });
 
   useEffect(() => {
     refetch();
